@@ -27,14 +27,7 @@ class CubesView: UIView {
         self.backgroundColor = getRandomColor()
         self.translatesAutoresizingMaskIntoConstraints = false
         
-        let tapDrawable = UIPanGestureRecognizer(target: self, action: #selector(CubesView.tapCub))
-        self.addGestureRecognizer(tapDrawable)
         
-        /*
-        let tap = UITapGestureRecognizer(target: self, action: #selector(CubesView.tapCub))
-        tap.delegate = self as? UIGestureRecognizerDelegate
-        self.addGestureRecognizer(tap)
-        */
         
         /*
         let horConst = NSLayoutConstraint(item: self,
@@ -95,6 +88,8 @@ class CubesView: UIView {
         super.didMoveToSuperview()
         if superview != nil {
             
+            
+            
         }
     }
     
@@ -107,12 +102,4 @@ class CubesView: UIView {
         
     }
     
-    func tapCub() {
-        self.removeFromSuperview()
-    }
-    
-    
-
-
-
 }
