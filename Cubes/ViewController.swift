@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     
     var countOfCubDidDown = 0
     var countOfTaps = 0
-    var countOfCubes = 2
+    var countOfCubes = 5
     
     
     var arrayOfCubes = [CubesView]()
@@ -128,7 +128,20 @@ class ViewController: UIViewController {
         
         let timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) {_ in
             
-            UIView.animate(withDuration: 5.0, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.1,
+            
+            UIView.animate(withDuration: 5.0, delay: 0.0, options: [UIViewAnimationOptions.allowUserInteraction, UIViewAnimationOptions.curveLinear], animations: {
+                sender.verConstraint?.constant = superview.frame.size.height
+                superview.layoutIfNeeded()
+            }, completion: { finished in
+                if finished {
+                    self.addAnimation(sender: sender, superview: superview)
+                    self.countOfCubDidDown += 1
+                    self.countOfCubDidDownLabel.text = String(self.countOfCubDidDown)
+                }
+                
+            })
+            /*
+            UIView.animate(withDuration: 5.0, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0,
                            options: [UIViewAnimationOptions.allowUserInteraction, UIViewAnimationOptions.curveLinear],
                            animations: {
                             
@@ -145,7 +158,7 @@ class ViewController: UIViewController {
                 }
                 
             })
-            
+            */
         }
         RunLoop.current.add(timer, forMode: .commonModes)
         
